@@ -1,0 +1,17 @@
+{
+  "name": "shcheck-e2e",
+  "version": "0.1.0",
+  "description": "E2E tests for shcheck-web",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "install:browsers": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.0",
+    "@types/node": "^22.3.0"
+  }
+}

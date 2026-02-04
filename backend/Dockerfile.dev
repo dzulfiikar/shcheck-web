@@ -1,0 +1,29 @@
+FROM oven/bun:1-alpine
+
+WORKDIR /app
+
+# Install dependencies for Python execution (shcheck CLI) and curl
+RUN apk add --no-cache python3 py3-pip curl
+
+# Download latest shcheck from GitHub
+RUN curl -L -o /tmp/shcheck.tar.gz https://github.com/santoru/shcheck/archive/refs/heads/master.tar.gz && \
+    tar -xzf /tmp/shcheck.tar.gz -C /tmp && \
+    mkdir -p /app/shcheck && \
+    cp /tmp/shcheck-master/shcheck.py /app/shcheck/ && \
+    chmod +x /app/shcheck/shcheck.py && \
+    rm -rf /tmp/shcheck.tar.gz /tmp/shcheck-master
+
+# Copy package files
+COPY package.json bun.lockb* ./
+
+# Install all dependencies (including dev)
+RUN bun install
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3001
+
+# Start in development mode with hot reload
+CMD ["bun", "run", "dev"]
