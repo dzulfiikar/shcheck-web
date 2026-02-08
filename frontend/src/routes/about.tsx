@@ -144,8 +144,8 @@ function About() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            This project is licensed under the MIT License. The original shcheck tool
-            is also open source and available under the GNU General Public License v3.0.
+            This project is licensed under the GNU General Public License v3.0 (or later),
+            matching the original shcheck tool license.
           </p>
         </CardContent>
       </Card>
